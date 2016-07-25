@@ -1,0 +1,26 @@
+{
+  "name": "botretail",
+  "version": "0.0.1",
+  "description": "Bot using bot framework for retail purposes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DXFrance/botretail.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DXFrance/botretail/issues"
+  },
+  "homepage": "https://github.com/DXFrance/botretail#readme",
+  "dependencies": {
+    "botbuilder": "^3.1.1",
+    "restify": "^4.1.1"
+  },
+  "devDependencies": {
+    "vorlon-node-wrapper": "0.0.2"
+  }
+}
