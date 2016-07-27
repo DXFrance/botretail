@@ -1,0 +1,38 @@
+[
+    {
+        "name": "LDLC Aurore Bi3-4-H10",
+        "brand": "LDCL",
+        "price": 1579,
+        "specs": {
+            "ram": 16,
+            "ssd": true,
+            "webcam": true,
+            "gpu": {
+                "name": "Nvdia 1800",
+                "price": 600
+            },
+            "cpu": {
+                "name": "i9 4500k",
+                "price": 350
+            }
+        }
+    },
+    {
+        "name": "ASUS P2710JF-T2054G Noir",
+        "brand": "ASUS",
+        "price": 650,
+        "specs": {
+            "ram": 4,
+            "ssd": false,
+            "webcam": true,
+            "gpu": {
+                "name": "Nvdia MGT",
+                "price": 160
+            },
+            "cpu": {
+                "name": "i3 20kL",
+                "price": 150
+            }
+        }
+    }
+]
