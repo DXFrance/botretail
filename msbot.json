@@ -1,0 +1,989 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "msbot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "BuyPC"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "Hello"
+    }
+  ],
+  "entities": [
+    {
+      "name": "PcCam",
+      "children": [
+        "With",
+        "Without"
+      ]
+    },
+    {
+      "name": "PcType"
+    },
+    {
+      "name": "PcPrice",
+      "children": [
+        "startPrice",
+        "endPrice"
+      ]
+    },
+    {
+      "name": "PcBrand"
+    }
+  ],
+  "composites": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "i would like to buy a laptop",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i need a gaming pc",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need a pc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i want to buy a pc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "test",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i need a computer for office",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i would like to buy a pc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "dazd",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "why pc",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i want a pc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i need cheese",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i need pc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i want a laptop for my son",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "laptop",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "bunny",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "a",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i need a laptop",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i would like an asus laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i would like an ldcl pc",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i want an asus gaming laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i want an asus",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "bonjour",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "hello robot",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "how are you ?",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "hello luis",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "good morning",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "i need an asus laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i would like to buy a pc between 500€ and 650€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 11,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "i would like to buy a computer for 600$",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 9,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "i need a gaming computer from 1200€ up to 1500€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 10,
+          "endPos": 10
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 11,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "i wan't to buy an asus laptop for at least 1800€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 12,
+          "endPos": 12
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 13,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "i need a gaming pc for less than 600€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 9,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "hello i want a pc for 800€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i need an asus",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "hello i'm looking for an asus",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "hello i'm looking for an asus gaming laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "i need an asus for gaming",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need a pc 2000€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i want an qassus",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need a gaming pc asus",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i need a gaming laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need a gamingpc",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "daz",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i need an asus for gaming for 200€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "i would",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "dazdazda",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "zefgezfe",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "dzadazdazd",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "buypc",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "gfdgfdg",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i want a pc less than 300€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i need an asus pc for gaming",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need an asus pc for gaming for less than 500€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 10,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "i need an asus pc for gaming between 20 and 120€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 10,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "i need a pcc",
+      "intent": "BuyPC",
+      "entities": []
+    },
+    {
+      "text": "i need an asus gaming pc",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need an ldlc computer for office for 1200€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "i want a laptop without webcam",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::Without",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i want a pc with webcam",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i need a computer with camera",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "a pc without cam",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::Without",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i want an ldlc computer with camera",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i want an asus pc between 200 and 500",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "i want a pc between 200 and 500",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::startPrice",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "i want a pc less than 200$",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i want a pc less than 200€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i want a pc for 200$",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i want a pc for less than 200€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "i want an ldlc computer for gaming for less than 200€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 10,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "i want an ldlc computer for gaming",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need a laptop for office",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i want an asus pc for 500€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i need an office laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i want an asus pc for less than 500€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 8,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "pc with cam",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i want a pc with cam",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i want an ldlc laptop for gaming with camera",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::With",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "with cam",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i want an ldlc laptop for gaming without camera",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcCam::Without",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "PcType",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i need an asus gaming laptop",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcType",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "PcBrand",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "salut",
+      "intent": "Hello",
+      "entities": []
+    },
+    {
+      "text": "500",
+      "intent": "None",
+      "entities": [
+        {
+          "entity": "PcPrice::endPrice",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "i need a laptop for 500€",
+      "intent": "BuyPC",
+      "entities": [
+        {
+          "entity": "PcPrice",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    }
+  ]
+}
