@@ -1,4 +1,5 @@
 var builder = require('botbuilder');
+var fs      = require('fs');
 
 export namespace RETAILBOT {
     export class DialogsManager{
@@ -6,27 +7,50 @@ export namespace RETAILBOT {
         private _luismodel: string;
         private _recognizer: any; //to be fixed later...
         private _dialog: any; // samehere...
+        private _criteria: any;
 
         constructor(){
             this._luismodel = 'https://api.projectoxford.ai/luis/v1/application?id=4003e415-34e6-4ed1-94e5-bcd41f3d166a&subscription-key=0784951bd65d4b3cac6a0fa67d320b9f'; 
             this._recognizer = new builder.LuisRecognizer(this._luismodel);
             this._dialog = new builder.IntentDialog({ recognizers: [this._recognizer] });
+            this._criteria = JSON.parse(fs.readFileSync('data/criteria.json'));
         }
 
-        public criteria (session: any, results: any): void {
+        protected criteria (session: any, results: any): void {
             var missing_criteria: any[] = [];
             for (var key in session.userData.laptop) {
                 if (session.userData.laptop[key] == null) {
                     missing_criteria.push(key);
                 }
             }
-            
+                        
             if (missing_criteria.length) {
                 console.log('CALLING : ' + missing_criteria[0]);
-                session.beginDialog('/'+missing_criteria[0]);
+                session.beginDialog('/' + missing_criteria[0]);
             } else {
                 session.send(JSON.stringify(session.userData.laptop));
                 session.endDialog();
+            }
+        }
+
+        protected set_dialogs(bot: any) :void {
+            for (var c of this._criteria) {
+                var that = this;
+                var criteria:any = [
+                    function(session: any) {
+                        builder.Prompts[this.criteria["type"]](session, this.criteria["question"], ((this.criteria["choices"]) ? this.criteria["choices"] : null ));
+                    }, function(session: any, results: any) {
+                        if (this.criteria["type"] == "text") {
+                            session.userData.laptop[this.criteria["name"]] = results.response;
+                        } else if (this.criteria["type"] == "choice") {
+                            session.userData.laptop[this.criteria["name"]] = results.response.entity;   
+                        }
+                        that.criteria(session, results);
+                    }
+                ];
+                
+                criteria.criteria  = c;
+                bot.dialog('/' + c["name"], criteria); 
             }
         }
 
@@ -61,54 +85,20 @@ export namespace RETAILBOT {
                             price[key] = price[key].entity;
                         }
                     }
-                        
+                    
                     session.userData.laptop = {
                         brand: brand ? brand.entity : null,
                         type: type ? type.entity : null,
                         price: got_price ? price : null,
                         cam: cam
                     };
-                    
+                                        
                     next();
                 },
                 this.criteria
             ]);
-
-            bot.dialog('/price', [
-                (session: any) => {
-                    builder.Prompts.text(session, 'What price do you want ?');
-                }, function (session: any, results: any) {
-                    session.userData.laptop.price = results.response;
-                    this.criteria(session, results);
-                }
-            ]);
-
-            bot.dialog('/cam', [
-                (session: any) => {
-                    builder.Prompts.choice(session, "Do you need a camera ?", ["Yes","No"]);
-                }, function (session: any, results: any) {
-                    session.userData.laptop.cam = (results.response == 'yes') ? true : false ;
-                    this.criteria(session, results);
-                }
-            ]);
-
-            bot.dialog('/brand', [
-                (session: any) => {
-                    builder.Prompts.text(session, 'Are you looking for a brand ?');
-                }, function (session: any, results: any) {
-                    session.userData.laptop.brand = results.response;
-                    this.criteria(session, results);
-                }
-            ]);
-
-            bot.dialog('/type', [
-                (session: any)=> {
-                    builder.Prompts.text(session, 'What are you doing with your computer ?');
-                }, function (session: any, results: any) {
-                    session.userData.laptop.type = results.response;
-                    this.criteria(session, results);
-                }
-            ]);
+            
+            this.set_dialogs(bot);
 
             this._dialog.matches('Hello', [
                 (session: any, args: any, next: any) => {

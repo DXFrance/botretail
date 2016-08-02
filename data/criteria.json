@@ -1,0 +1,23 @@
+[
+    {
+        "name": "price",
+        "question": "What price do you want ?",
+        "type": "text"
+    },
+    {
+        "name": "cam",
+        "question": "Do you need a camera ?",
+        "type": "choice",
+        "choices": ["Yes", "No"]
+    },
+    {
+        "name": "brand",
+        "question": "Are you looking for a brand ?",
+        "type": "text"
+    },
+    {
+        "name": "type",
+        "question": "What are you doing with your computer ?",
+        "type": "text"
+    }
+]
