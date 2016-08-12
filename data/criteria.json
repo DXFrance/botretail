@@ -6,18 +6,18 @@
     },
     {
         "name": "cam",
-        "question": "Do you need a camera ?",
+        "question": "Will you do visio conferences ?",
         "type": "choice",
         "choices": ["Yes", "No"]
     },
     {
         "name": "brand",
-        "question": "Are you looking for a brand ?",
+        "question": "Do you have a specific brand in mind ?",
         "type": "text"
     },
     {
         "name": "type",
-        "question": "What are you doing with your computer ?",
+        "question": "What will you do with your computer ?",
         "type": "text"
     }
 ]
