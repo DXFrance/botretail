@@ -4,7 +4,8 @@
   "description": "Bot using bot framework for retail purposes",
   "main": "app.js",
   "scripts": {
-    "start": "node bin/app.js"
+    "start": "node bin/app.js",
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
