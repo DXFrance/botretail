@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Office 365 Home",
+        "description": "Tout office et bien plus !",
+        "productid": "1",
+        "originalprice": "13$/mo",
+        "offerprice": "10$/mo",
+        "criterias": {
+            "type": ["desktop"]
+        }       
+    },
+    {
+        "name": "Groove music pass",
+        "description": "Toute votre musique illimitée sur 5 périphériques !",
+        "productid": "2",
+        "originalprice": "12$/mo",
+        "offerprice": "8$/mo",
+        "criterias": {
+            "type": ["music", "gaming"],
+            "price": {
+                "from": "500",
+                "to": ""
+            } 
+        } 
+    }
+]
