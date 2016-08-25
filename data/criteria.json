@@ -1,55 +1,19 @@
 [
     {
-        "name": "price",
-        "question": "What price do you want ?",
-        "type": "text"
-    },
-    // {
-    //     "name": "price",
-    //     "question": "What price do you want ?",
-    //     "type": "luis",
-    //     "entities": [
-    //         {
-    //             "entityName": "from",
-    //             "reAskSentence": "I did not get your minimum price, can you give it to me again?"
-    //         },
-    //         {
-    //             "entityName": "to",
-    //             "reAskSentence": "I did not get your maximum price, can you give it to me again?"
-    //         }
-    //     ]
-    // },
-    {
         "name": "cam",
         "question": "Will you do visio conferences ?",
         "type": "choice",
-        "choices": ["Yes", "No"]
-    },
-    // {
-    //     "name": "cam",
-    //     "question": "Will you do visio conferences ?",
-    //     "type": "choice",
-    //     "choices": [
-    //         {
-    //             "value": "Yes",
-    //             "profileProperty": "webcam",
-    //             "profileValue": true
-    //         }, 
-    //         {
-    //             "value": "No",
-    //             "profileProperty": "webcam",
-    //             "profileValue": false
-    //         }
-    //     ]
-    // },
-    {
-        "name": "brand",
-        "question": "Do you have a specific brand in mind ?",
-        "type": "text"
-    },
-    {
-        "name": "type",
-        "question": "What will you do with your computer ?",
-        "type": "text"
-    }
+        "choices": [
+            {
+                "value": "Yes",
+                "profileProperty": "webcam",
+                "profileValue": true
+            }, 
+            {
+                "value": "No",
+                "profileProperty": "webcam",
+                "profileValue": false
+            }
+        ]
+    }   
 ]

@@ -18,8 +18,8 @@ export namespace RETAILBOT {
 
         protected criteria (session: any, results: any): void {
             var missing_criteria: any[] = [];
-            for (var key in session.userData.laptop) {
-                if (session.userData.laptop[key] == null) {
+            for (var key in session.userData.profile) {
+                if (session.userData.profile[key] == null) {
                     missing_criteria.push(key);
                 }
             }
@@ -28,7 +28,7 @@ export namespace RETAILBOT {
                 console.log('CALLING : ' + missing_criteria[0]);
                 session.beginDialog('/' + missing_criteria[0]);
             } else {
-                session.send(JSON.stringify(session.userData.laptop));
+                session.send(JSON.stringify(session.userData.profile));
                 session.endDialog();
             }
         }
@@ -38,12 +38,21 @@ export namespace RETAILBOT {
                 var that = this;
                 var criteria:any = [
                     function(session: any) {
-                        builder.Prompts[this.criteria["type"]](session, this.criteria["question"], ((this.criteria["choices"]) ? this.criteria["choices"] : null ));
+                        if(this.criteria["type"] === "choice"){
+                            var choices:any = [];
+                            for(var choice of this.criteria["choices"]){
+                                choices.push(choice.value);
+                            }
+                            builder.Prompts.choice(session, this.criteria["question"], choices);
+                        }
+                        else {
+                            builder.Prompts[this.criteria["type"]](session, this.criteria["question"], null );
+                        }
                     }, function(session: any, results: any) {
-                        if (this.criteria["type"] == "text") {
-                            session.userData.laptop[this.criteria["name"]] = results.response;
-                        } else if (this.criteria["type"] == "choice") {
-                            session.userData.laptop[this.criteria["name"]] = results.response.entity;   
+                        if (this.criteria["type"] === "text") {
+                            session.userData.profile[this.criteria["name"]] = results.response;
+                        } else if (this.criteria["type"] === "choice") {
+                            session.userData.profile[this.criteria["name"]] = results.response.entity;   
                         }
                         that.criteria(session, results);
                     }
@@ -86,10 +95,10 @@ export namespace RETAILBOT {
                         }
                     }
                     
-                    session.userData.laptop = {
-                        brand: brand ? brand.entity : null,
-                        type: type ? type.entity : null,
-                        price: got_price ? price : null,
+                    session.userData.profile = {
+                        // brand: brand ? brand.entity : null,
+                        // type: type ? type.entity : null,
+                        // price: got_price ? price : null,
                         cam: cam
                     };
                                         
