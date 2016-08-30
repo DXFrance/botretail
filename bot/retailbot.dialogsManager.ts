@@ -28,10 +28,13 @@ export namespace RETAILBOT {
                 console.log('CALLING : ' + missing_criteria[0]);
                 session.beginDialog('/' + missing_criteria[0]);
             } else {
-                session.send(JSON.stringify(session.userData.profile));
+                console.log(JSON.stringify(session.userData.profile));
                 session.endDialog();
+                session.beginDialog('/productChoice', session.userData.profile);
             }
         }
+
+        
 
         protected set_dialogs(bot: any) :void {
             for (var c of this._criteria) {
@@ -45,6 +48,7 @@ export namespace RETAILBOT {
                             }
                             builder.Prompts.choice(session, this.criteria["question"], choices);
                         }
+                        //https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer.html
                         else {
                             builder.Prompts[this.criteria["type"]](session, this.criteria["question"], null );
                         }
@@ -98,7 +102,7 @@ export namespace RETAILBOT {
                     session.userData.profile = {
                         // brand: brand ? brand.entity : null,
                         // type: type ? type.entity : null,
-                        // price: got_price ? price : null,
+                        //price: got_price ? price : null,
                         cam: cam
                     };
                                         
@@ -114,6 +118,71 @@ export namespace RETAILBOT {
                     session.send('Hello ! What can i do for you ?');
                 }
             ]);
+
+            bot.dialog('/productChoice', [
+            function (session: any) {
+                var msg = new builder.Message(session)
+                .textFormat(builder.TextFormat.xml)
+                .attachmentLayout(builder.AttachmentLayout.carousel)
+                .attachments([
+                    new builder.HeroCard(session)
+                        .title("HP Spectre")
+                        .text("The <b>Spectre</b> from HP is the thinest laptop in the world")
+                        .images([
+                            builder.CardImage.create(session, "http://h71076.www7.hp.com/EMEA/spectre/gallary2.jpg")
+                                .tap(builder.CardAction.showImage(session, "https://www.bing.com/search?q=hp+spectre")),
+                        ])
+                        .buttons([
+                            builder.CardAction.openUrl(session, "https://www.bing.com/search?q=hp+spectre", "Buy online"),
+                            builder.CardAction.imBack(session, "select:100", "Real store")
+                        ]),
+                    new builder.HeroCard(session)
+                        .title("Surface Pro 4")
+                        .text("<b>Surface Pro 4</b> The tablet that replace your laptop.")
+                        .images([
+                            builder.CardImage.create(session, "https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Pro4-CoreM-SU3-00001/en-INTL-L-Surface-Pro4-CoreM-SU3-00001-RM1-mnco.jpg")
+                                .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700")),
+                        ])
+                        .buttons([
+                            builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700", "Buy online"),
+                            builder.CardAction.imBack(session, "select:101", "Real store")
+                        ]),
+                    new builder.HeroCard(session)
+                        .title("XPS 13")
+                        .text("<b>XPS 13</b> from dell. STUNNING. POWERFUL. UNPARALLELED.")
+                        .images([
+                            builder.CardImage.create(session, "http://xpsbydell.com/wp-content/themes/xps_microsite_7-2016/images/tour/laptop.png?ver=0824162210")
+                                .tap(builder.CardAction.showImage(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn"))
+                        ])
+                        .buttons([
+                            builder.CardAction.openUrl(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn", "Buy online"),
+                            builder.CardAction.imBack(session, "select:102", "Real store")
+                        ])
+                ]);
+                builder.Prompts.choice(session, msg, "select:100|select:101|select:102");
+            },
+            function (session: any, results: any) {
+                var action:any, item:any;
+                var kvPair = results.response.entity.split(':');
+                switch (kvPair[0]) {
+                    case 'select':
+                        action = 'selected';
+                        break;
+                }
+                switch (kvPair[1]) {
+                    case '100':
+                        item = "<b>HP Spectre</b>";
+                        break;
+                    case '101':
+                        item = "<b>Surface Pro 4</b>";
+                        break;
+                    case '102':
+                        item = "<b>DEL XPS 13</b>";
+                        break;
+                }
+                session.endDialog('You %s "%s"', action, item);
+            }   
+        ]);
         }
     }    
 }
