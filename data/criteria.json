@@ -1,7 +1,7 @@
 [
     {
         "name": "price",
-        "question": "What price do you want ?",
+        "question": "What is your price limit ?",
         "type": "text"
     },
     {
