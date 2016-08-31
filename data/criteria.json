@@ -1,5 +1,10 @@
 [
     {
+        "name": "price",
+        "question": "What price do you want ?",
+        "type": "text"
+    },
+    {
         "name": "cam",
         "question": "Will you do visio conferences ?",
         "type": "choice",
@@ -8,12 +13,22 @@
                 "value": "Yes",
                 "profileProperty": "webcam",
                 "profileValue": true
-            }, 
+            },
             {
                 "value": "No",
                 "profileProperty": "webcam",
                 "profileValue": false
             }
         ]
-    }   
+    },
+    {
+        "name": "brand",
+        "question": "Do you have a specific brand in mind ?",
+        "type": "text"
+    },
+    {
+        "name": "type",
+        "question": "What will you do with your computer ?",
+        "type": "text"
+    }
 ]

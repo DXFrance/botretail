@@ -1,0 +1,35 @@
+[
+  {
+    "name": "LDLC PARIS 94270",
+    "phone": "01 77 75 35 00",
+    "address": "21 rue pasteur 94270",
+    "localisation": {
+      "lat": 48.815655,
+      "lng": 2.363429
+    },
+    "photo": "https://s3-media1.fl.yelpcdn.com/bphoto/n-4gRGRNdD2IZlJSmI3j1Q/348s.jpg",
+    "schedule": "Du Mardi au Vendredi de 10h00 à 19h30, Samedi de 10h00 à 19h00"
+  },
+  {
+    "name": "LDLC PARIS 75015",
+    "phone": "01 77 75 35 00",
+    "address": "12 rue de l'église 75015",
+    "localisation": {
+      "lat": 48.845018,
+      "lng": 2.285371
+    },
+    "photo": "http://s1.edi-static.fr/Img/DIAPORAMA/2015/7/257622/image-nouvelles-boutiques-LDLC-1-F.jpg",
+    "schedule": "Du Mardi au Vendredi de 10h00 à 19h30, Samedi de 10h00 à 19h00"
+  },
+  {
+    "name": "DARTY MARSEILLE CANTINI",
+    "address": "26 avenue Jules Cantini 13",
+    "phone": "04 56 75 32 05",
+    "localisation": {
+      "lat": 43.284177,
+      "lng": 5.386478
+    },
+    "photo": "https://s3-media1.fl.yelpcdn.com/bphoto/Y-12WvJ7JUZYbdLu33OMaw/348s.jpg",
+    "schedule": "Du Mardi au Vendredi de 10h00 à 19h30, Samedi de 10h00 à 19h00"
+  }
+]
