@@ -8,7 +8,18 @@
         "name": "cam",
         "question": "Will you do visio conferences ?",
         "type": "choice",
-        "choices": ["Yes", "No"]
+        "choices": [
+            {
+                "value": "Yes",
+                "profileProperty": "webcam",
+                "profileValue": true
+            }, 
+            {
+                "value": "No",
+                "profileProperty": "webcam",
+                "profileValue": false
+            }
+        ]
     },
     {
         "name": "brand",
