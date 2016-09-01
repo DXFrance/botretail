@@ -1,6 +1,6 @@
 [
   {
-    "name": "LDLC PARIS 94270",
+    "name": "MICROSOFT Store 94270",
     "phone": "01 77 75 35 00",
     "address": "21 rue pasteur 94270",
     "localisation": {
@@ -11,7 +11,7 @@
     "schedule": "Du Mardi au Vendredi de 10h00 à 19h30, Samedi de 10h00 à 19h00"
   },
   {
-    "name": "LDLC PARIS 75015",
+    "name": "MICROSOFT Store 75015",
     "phone": "01 77 75 35 00",
     "address": "12 rue de l'église 75015",
     "localisation": {
@@ -22,7 +22,7 @@
     "schedule": "Du Mardi au Vendredi de 10h00 à 19h30, Samedi de 10h00 à 19h00"
   },
   {
-    "name": "DARTY MARSEILLE CANTINI",
+    "name": "MICROSOFT Store",
     "address": "26 avenue Jules Cantini 13",
     "phone": "04 56 75 32 05",
     "localisation": {
