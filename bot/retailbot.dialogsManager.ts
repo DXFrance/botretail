@@ -38,8 +38,6 @@ export namespace RETAILBOT {
             }
         }
 
-
-
         protected set_dialogs(bot: any) :void {
             for (var c of this._criteria) {
                 var that = this;
@@ -170,42 +168,46 @@ export namespace RETAILBOT {
                     builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
                 },
                 (session: any, results: any) => {
-                  session.send('We are looking for the nearest store to ' + results.response + ', please wait a few seconds');
-                  var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine='+results.response);
-                  var bing = JSON.parse(res.getBody('utf8'));
-                  if (bing.resourceSets[0].estimatedTotal) {
-                    let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
-                    let lng = bing.resourceSets[0].resources[0].point.coordinates[1];
-                    this._store = [Number.MAX_SAFE_INTEGER, null];
-                    for (let i = 0, len = this._stores.length; i < len; i++) {
-                      let distance = this._geolocalisation.getDistanceFromLatLonInKm(lat, lng, this._stores[i].localisation.lat, this._stores[i].localisation.lng)
-                      if (distance < this._store[0]) {
-                        this._store[0] = distance;
-                        this._store[1] = this._stores[i];
-                      }
+                    session.send('We are looking for the nearest store to ' + results.response + ', please wait a few seconds');
+                    var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine='+results.response);
+                    var bing = JSON.parse(res.getBody('utf8'));
+                    if (bing.resourceSets[0].estimatedTotal) {
+                        let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
+                        let lng = bing.resourceSets[0].resources[0].point.coordinates[1];
+                        this._store = [Number.MAX_SAFE_INTEGER, null];
+                        for (let i = 0, len = this._stores.length; i < len; i++) {
+                            let distance = this._geolocalisation.getDistanceFromLatLonInKm(lat, lng, this._stores[i].localisation.lat, this._stores[i].localisation.lng)
+                            if (distance < this._store[0]) {
+                                this._store[0] = distance;
+                                this._store[1] = this._stores[i];
+                            }
+                        }
+
+                        var msg = new builder.Message(session)
+                            .textFormat(builder.TextFormat.xml)
+                            .attachmentLayout(builder.AttachmentLayout.carousel)
+                            .attachments([
+                                new builder.HeroCard(session)
+                                    .title(this._store[1].name)
+                                    .text("<ul><li>" + this._store[1].phone + "</li><li>" + this._store[1].address + "</li><li>" + this._store[1].schedule + "</li></ul>")
+                                    .images([
+                                        builder.CardImage.create(session, this._store[1].photo)
+                                            .tap(builder.CardAction.showImage(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0")),
+                                    ])
+                                    .buttons([
+                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0", "Bing Direction"),
+                                        builder.CardAction.imBack(session, "Let's go !", "Go")
+                                    ])
+                            ]);
+                        builder.Prompts.choice(session, msg, "Let's go !");
+
+                    } else {
+                        session.send('We cannot find a store near you, try with a different address');
                     }
-
-                    var msg = new builder.Message(session)
-                    .textFormat(builder.TextFormat.xml)
-                    .attachmentLayout(builder.AttachmentLayout.carousel)
-                    .attachments([
-                        new builder.HeroCard(session)
-                            .title(this._store[1].name)
-                            .text("<ul><li>" + this._store[1].phone + "</li><li>" + this._store[1].address + "</li><li>" + this._store[1].schedule + "</li></ul>")
-                            .images([
-                                builder.CardImage.create(session, this._store[1].photo)
-                                    .tap(builder.CardAction.showImage(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0")),
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0", "Bing Direction"),
-                            ])
-                    ]);
-                    builder.Prompts.choice(session, msg);
-
-                  } else {
-                    session.send('We cannot find a store near you, try with a different address');
-                  }
-                }
+                },
+                (session: any, results: any) => {
+                    session.endDialog();
+                },
             ]);
         }
     }
