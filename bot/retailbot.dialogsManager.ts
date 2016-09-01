@@ -1,19 +1,25 @@
 var builder = require('botbuilder');
 var fs      = require('fs');
+var request = require('sync-request');
+var Geolocalisation = require("./retailbot.geolocalisation");
 
 export namespace RETAILBOT {
     export class DialogsManager{
-
         private _luismodel: string;
         private _recognizer: any; //to be fixed later...
         private _dialog: any; // samehere...
         private _criteria: any;
+        private _stores: any;
+        private _geolocalisation: any;
+        private _store: any;
 
-        constructor(){
-            this._luismodel = 'https://api.projectoxford.ai/luis/v1/application?id=4003e415-34e6-4ed1-94e5-bcd41f3d166a&subscription-key=0784951bd65d4b3cac6a0fa67d320b9f'; 
+        constructor() {
+            this._geolocalisation = Geolocalisation.Geolocalisation;
+            this._luismodel = 'https://api.projectoxford.ai/luis/v1/application?id=4003e415-34e6-4ed1-94e5-bcd41f3d166a&subscription-key=0784951bd65d4b3cac6a0fa67d320b9f';
             this._recognizer = new builder.LuisRecognizer(this._luismodel);
             this._dialog = new builder.IntentDialog({ recognizers: [this._recognizer] });
             this._criteria = JSON.parse(fs.readFileSync('data/criteria.json'));
+            this._stores = JSON.parse(fs.readFileSync('data/stores.json'));
         }
 
         protected criteria (session: any, results: any): void {
@@ -23,18 +29,16 @@ export namespace RETAILBOT {
                     missing_criteria.push(key);
                 }
             }
-                        
+
             if (missing_criteria.length) {
-                console.log('CALLING : ' + missing_criteria[0]);
                 session.beginDialog('/' + missing_criteria[0]);
             } else {
-                console.log(JSON.stringify(session.userData.profile));
                 session.endDialog();
                 session.beginDialog('/productChoice', session.userData.profile);
             }
         }
 
-        
+
 
         protected set_dialogs(bot: any) :void {
             for (var c of this._criteria) {
@@ -56,14 +60,14 @@ export namespace RETAILBOT {
                         if (this.criteria["type"] === "text") {
                             session.userData.profile[this.criteria["name"]] = results.response;
                         } else if (this.criteria["type"] === "choice") {
-                            session.userData.profile[this.criteria["name"]] = results.response.entity;   
+                            session.userData.profile[this.criteria["name"]] = results.response.entity;
                         }
                         that.criteria(session, results);
                     }
                 ];
-                
+
                 criteria.criteria  = c;
-                bot.dialog('/' + c["name"], criteria); 
+                bot.dialog('/' + c["name"], criteria);
             }
         }
 
@@ -81,36 +85,36 @@ export namespace RETAILBOT {
                         'startPrice' : builder.EntityRecognizer.findEntity(args.entities, 'PcPrice::startPrice'),
                         'endPrice' : builder.EntityRecognizer.findEntity(args.entities, 'PcPrice::endPrice')
                     };
-                    
+
                     var cam: any = null;
-                    
+
                     if (builder.EntityRecognizer.findEntity(args.entities, 'PcCam::With')) {
                         cam = true;
                     } else if (builder.EntityRecognizer.findEntity(args.entities, 'PcCam::Without')) {
                         cam = false;
                     }
-                    
+
                     var got_price: any = null;
-                    
+
                     for (var key in price) {
                         if (price[key]) {
                             got_price = true;
                             price[key] = price[key].entity;
                         }
                     }
-                    
+
                     session.userData.profile = {
-                        // brand: brand ? brand.entity : null,
-                        // type: type ? type.entity : null,
-                        //price: got_price ? price : null,
+                        brand: brand ? brand.entity : null,
+                        type: type ? type.entity : null,
+                        price: got_price ? price : null,
                         cam: cam
                     };
-                                        
+
                     next();
                 },
                 this.criteria
             ]);
-            
+
             this.set_dialogs(bot);
 
             this._dialog.matches('Hello', [
@@ -120,7 +124,7 @@ export namespace RETAILBOT {
             ]);
 
             bot.dialog('/productChoice', [
-                function (session: any) {
+                 (session: any) => {
                     var msg = new builder.Message(session)
                     .textFormat(builder.TextFormat.xml)
                     .attachmentLayout(builder.AttachmentLayout.carousel)
@@ -161,22 +165,48 @@ export namespace RETAILBOT {
                     ]);
                     builder.Prompts.choice(session, msg, "HP Spectre|Surface Pro 4|XPS 13");
                 },
-                function (session: any, results: any) {
+                (session: any, results: any) => {
                     var item = results.response.entity;
-                    switch (item) {
-                        case 'HP Spectre':
-                            item = "<b>HP Spectre</b>";
-                            break;
-                        case 'Surface Pro 4':
-                            item = "<b>Surface Pro 4</b>";
-                            break;
-                        case 'XPS 13':
-                            item = "<b>DEL XPS 13</b>";
-                            break;
+                    builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
+                },
+                (session: any, results: any) => {
+                  session.send('We are looking for the nearest store to ' + results.response + ', please wait a few seconds');
+                  var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine='+results.response);
+                  var bing = JSON.parse(res.getBody('utf8'));
+                  if (bing.resourceSets[0].estimatedTotal) {
+                    let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
+                    let lng = bing.resourceSets[0].resources[0].point.coordinates[1];
+                    this._store = [Number.MAX_SAFE_INTEGER, null];
+                    for (let i = 0, len = this._stores.length; i < len; i++) {
+                      let distance = this._geolocalisation.getDistanceFromLatLonInKm(lat, lng, this._stores[i].localisation.lat, this._stores[i].localisation.lng)
+                      if (distance < this._store[0]) {
+                        this._store[0] = distance;
+                        this._store[1] = this._stores[i];
+                      }
                     }
-                    session.endDialog('You choose "%s"', item);
-                }   
+
+                    var msg = new builder.Message(session)
+                    .textFormat(builder.TextFormat.xml)
+                    .attachmentLayout(builder.AttachmentLayout.carousel)
+                    .attachments([
+                        new builder.HeroCard(session)
+                            .title(this._store[1].name)
+                            .text("<ul><li>" + this._store[1].phone + "</li><li>" + this._store[1].address + "</li><li>" + this._store[1].schedule + "</li></ul>")
+                            .images([
+                                builder.CardImage.create(session, this._store[1].photo)
+                                    .tap(builder.CardAction.showImage(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0")),
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0", "Bing Direction"),
+                            ])
+                    ]);
+                    builder.Prompts.choice(session, msg);
+
+                  } else {
+                    session.send('We cannot find a store near you, try with a different address');
+                  }
+                }
             ]);
         }
-    }    
+    }
 }

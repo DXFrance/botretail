@@ -25,23 +25,23 @@
         "type": "choice",
         "choices": ["Yes", "No"]
     },
-    // {
-    //     "name": "cam",
-    //     "question": "Will you do visio conferences ?",
-    //     "type": "choice",
-    //     "choices": [
-    //         {
-    //             "value": "Yes",
-    //             "profileProperty": "webcam",
-    //             "profileValue": true
-    //         }, 
-    //         {
-    //             "value": "No",
-    //             "profileProperty": "webcam",
-    //             "profileValue": false
-    //         }
-    //     ]
-    // },
+    {
+        "name": "cam",
+        "question": "Will you do visio conferences ?",
+        "type": "choice",
+        "choices": [
+            {
+                "value": "Yes",
+                "profileProperty": "webcam",
+                "profileValue": true
+            },
+            {
+                "value": "No",
+                "profileProperty": "webcam",
+                "profileValue": false
+            }
+        ]
+    },
     {
         "name": "brand",
         "question": "Do you have a specific brand in mind ?",
