@@ -72,6 +72,18 @@ export namespace RETAILBOT {
         public init(bot: any) {
             bot.dialog('/', this._dialog);
 
+             bot.use({
+                botbuilder: function (session, next) {
+                    console.log('Message Received: ', session.message.text);
+                    if(session.message.text === "--reset"){
+                        session.endDialog();
+                    }
+                    else {
+                        next();
+                    }
+                }
+            });
+
             this._dialog.onDefault(builder.DialogAction.send("I'm sorry I didn't understand."));
 
             this._dialog.matches('BuyPC', [
