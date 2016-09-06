@@ -73,7 +73,7 @@ export namespace RETAILBOT {
             bot.dialog('/', this._dialog);
 
              bot.use({
-                botbuilder: function (session, next) {
+                botbuilder: function (session: any, next:any) {
                     console.log('Message Received: ', session.message.text);
                     if(session.message.text === "--reset"){
                         session.endDialog();
@@ -171,17 +171,53 @@ export namespace RETAILBOT {
                             .buttons([
                                 builder.CardAction.openUrl(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn", "Buy online"),
                                 builder.CardAction.imBack(session, "XPS 13", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("I don't know !")
+                            .text("Help me to choose.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.silicon.fr/wp-content/uploads/2016/06/Windows-10-684x513.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn"))
+                            ])
+                            .buttons([
+                                builder.CardAction.imBack(session, "I don't know", "I don't know")
                             ])
                     ]);
-                    builder.Prompts.choice(session, msg, "HP Spectre|Surface Pro 4|XPS 13");
+                    builder.Prompts.choice(session, msg, "HP Spectre|Surface Pro 4|XPS 13|I don't know");
                 },
                 (session: any, results: any) => {
                     var item = results.response.entity;
-                    builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
+                    if(item === "I don't know"){
+                        session.send('You can meet someone at a physical store to help you. ');
+                        builder.Prompts['text'](session, 'Can you give me your physical address to I can select the nearest store for you ?', null );
+                    }
+                    else {
+                        builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
+                    }
                 },
                 (session: any, results: any) => {
-                    session.send('We are looking for the nearest store to ' + results.response + ', please wait a few seconds');
-                    var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine='+results.response);
+                    session.send('I am looking for the nearest store to ' + results.response + ', please wait a few seconds');
+                    session.send('Oh and based on what you need I can also recommand that you get a Office 365 subscription, are you interested in this?');
+                    var msg = new builder.Message(session)
+                            .textFormat(builder.TextFormat.xml)
+                            .attachmentLayout(builder.AttachmentLayout.carousel)
+                            .attachments([
+                                new builder.HeroCard(session)
+                                    .title("Special Offer")
+                                    .text("Add an Office 365 subscription?")
+                                    .images([])
+                                    .buttons([
+                                        builder.CardAction.imBack(session, "Yes", "Yes"),
+                                        builder.CardAction.imBack(session, "No", "No")
+                                    ])
+                            ]);
+                        builder.Prompts.choice(session, msg, "Yes|No");
+                },
+                (session: any, results: any) => {
+                    session.send('Ok!');
+                    session.send('Here is the nearest store I have found. A seller will be able to answer your questions. :)');
+                    var address = "3 bis, rue rottembourg 75012 PARIS" //results.response;
+                    var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine=' + address);
                     var bing = JSON.parse(res.getBody('utf8'));
                     if (bing.resourceSets[0].estimatedTotal) {
                         let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
@@ -214,7 +250,7 @@ export namespace RETAILBOT {
                         builder.Prompts.choice(session, msg, "Let's go !");
 
                     } else {
-                        session.send('We cannot find a store near you, try with a different address');
+                        session.send('I cannot find a store near you, try with a different address');
                     }
                 },
                 (session: any, results: any) => {
