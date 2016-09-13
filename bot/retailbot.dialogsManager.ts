@@ -140,37 +140,59 @@ export namespace RETAILBOT {
                     .attachmentLayout(builder.AttachmentLayout.carousel)
                     .attachments([
                         new builder.HeroCard(session)
-                            .title("HP Spectre")
-                            .text("The <b>Spectre</b> from HP is the thinest laptop in the world")
+                            .title("Acer Swift 3")
+                            .text("Ultra-Thin & Light")
                             .images([
-                                builder.CardImage.create(session, "http://h71076.www7.hp.com/EMEA/spectre/gallary2.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.bing.com/search?q=hp+spectre")),
+                                builder.CardImage.create(session, "http://static.acer.com/up/Resource/Acer/Notebooks/Swift%203/Photogallery/20160823/Swift-3_Fingerprint_gold_gallery_04.png")
+                                    .tap(builder.CardAction.showImage(session, "http://www.acer.com/ac/en/US/content/series/swift3")),
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "https://www.bing.com/search?q=hp+spectre", "Buy online"),
-                                builder.CardAction.imBack(session, "HP Spectre", "Real store")
+                                builder.CardAction.openUrl(session, "http://www.acer.com/ac/en/US/content/series/swift3", "Buy online"),
+                                builder.CardAction.imBack(session, "Acer Swift 3", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("ASUS UX 360")
+                            .text("360° of Freedom. 100% ZenBook.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.ultrabookreview.com/wp-content/uploads/2016/06/asus-zenbook-ux360-3.jpg")
+                                    .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/")),
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/", "Buy online"),
+                                builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("SAMSUNG TAB PRO S")
+                            .text("Work and Fun.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/", "Buy online"),
+                                builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("FUJITSU R736")
+                            .text("A tablet that tranforms to a full performance and full productivity notebook.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.fujitsu.com/global/Images/W-DK37806_tcm100-2132797.png")
+                                    .tap(builder.CardAction.showImage(session, "http://www.fujitsu.com/global/products/computing/pc/tablets/stylistic-r726/"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "http://www.fujitsu.com/global/products/computing/pc/tablets/stylistic-r726/", "Buy online"),
+                                builder.CardAction.imBack(session, "FUJITSU R736", "Real store")
                             ]),
                         new builder.HeroCard(session)
                             .title("Surface Pro 4")
                             .text("<b>Surface Pro 4</b> The tablet that replace your laptop.")
                             .images([
                                 builder.CardImage.create(session, "https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Pro4-CoreM-SU3-00001/en-INTL-L-Surface-Pro4-CoreM-SU3-00001-RM1-mnco.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700")),
+                                    .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700", "Buy online"),
+                                builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500", "Buy online"),
                                 builder.CardAction.imBack(session, "Surface Pro 4", "Real store")
-                            ]),
-                        new builder.HeroCard(session)
-                            .title("XPS 13")
-                            .text("<b>XPS 13</b> from dell. STUNNING. POWERFUL. UNPARALLELED.")
-                            .images([
-                                builder.CardImage.create(session, "http://xpsbydell.com/wp-content/themes/xps_microsite_7-2016/images/tour/laptop.png?ver=0824162210")
-                                    .tap(builder.CardAction.showImage(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn"))
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn", "Buy online"),
-                                builder.CardAction.imBack(session, "XPS 13", "Real store")
                             ]),
                         new builder.HeroCard(session)
                             .title("I don't know !")
@@ -239,11 +261,11 @@ export namespace RETAILBOT {
                                     .title(this._store[1].name)
                                     .text("<ul><li>" + this._store[1].phone + "</li><li>" + this._store[1].address + "</li><li>" + this._store[1].schedule + "</li></ul>")
                                     .images([
-                                        builder.CardImage.create(session, this._store[1].photo)
-                                            .tap(builder.CardAction.showImage(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0")),
+                                        builder.CardImage.create(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")
+                                            .tap(builder.CardAction.showImage(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")),
                                     ])
                                     .buttons([
-                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0", "Bing Direction"),
+                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + address + "&rtop=0~1~0", "Bing Direction"),
                                         builder.CardAction.imBack(session, "Let's go !", "Go")
                                     ])
                             ]);
