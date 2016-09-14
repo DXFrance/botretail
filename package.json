@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/DXFrance/botretail#readme",
   "dependencies": {
-    "botbuilder": "^3.1.1",
+    "botbuilder": "3.1.1",
     "restify": "^4.1.1",
     "sync-request": "^3.0.1"
   },
