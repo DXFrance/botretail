@@ -173,15 +173,26 @@ export namespace RETAILBOT {
                                 builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
                             ]),
                         new builder.HeroCard(session)
-                            .title("FUJITSU R736")
-                            .text("A tablet that tranforms to a full performance and full productivity notebook.")
+                            .title("LENOVO YOGA 900")
+                            .text("The Yoga 900 is unbelievably thin and elegant.")
                             .images([
-                                builder.CardImage.create(session, "http://www.fujitsu.com/global/Images/W-DK37806_tcm100-2132797.png")
-                                    .tap(builder.CardAction.showImage(session, "http://www.fujitsu.com/global/products/computing/pc/tablets/stylistic-r726/"))
+                                builder.CardImage.create(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665")
+                                    .tap(builder.CardAction.showImage(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "http://www.fujitsu.com/global/products/computing/pc/tablets/stylistic-r726/", "Buy online"),
-                                builder.CardAction.imBack(session, "FUJITSU R736", "Real store")
+                                builder.CardAction.openUrl(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665", "Buy online"),
+                                builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("HP Spectre")
+                            .text("Power never looked so thin.")
+                            .images([
+                                builder.CardImage.create(session, "http://mensgear.net/wp-content/uploads/2016/04/HP-Spectre-13-Laptop.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://mensgear.net/wp-content/uploads/2016/04/HP-Spectre-13-Laptop.jpg"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "http://mensgear.net/wp-content/uploads/2016/04/HP-Spectre-13-Laptop.jpg", "Buy online"),
+                                builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
                             ]),
                         new builder.HeroCard(session)
                             .title("Surface Pro 4")
