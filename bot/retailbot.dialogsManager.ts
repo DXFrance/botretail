@@ -276,7 +276,7 @@ export namespace RETAILBOT {
                                             .tap(builder.CardAction.showImage(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")),
                                     ])
                                     .buttons([
-                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + address + "&rtop=0~1~0", "Bing Direction"),
+                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + "39 quai du president roosevelt 92130 issy les moulineaux" + "~adr." + "21 Rue Pasteur, Le Kremlin-Bicêtre, IdF 94270, France" + "&rtop=0~1~0", "Bing Direction"),
                                         builder.CardAction.imBack(session, "Let's go !", "Go")
                                     ])
                             ]);
