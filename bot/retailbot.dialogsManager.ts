@@ -76,7 +76,7 @@ export namespace RETAILBOT {
                 botbuilder: function (session: any, next:any) {
                     console.log('Message Received: ', session.message.text);
                     if(session.message.text === "--reset"){
-                        session.endDialog();
+                        session.endConversation();
                     }
                     else {
                         next();
