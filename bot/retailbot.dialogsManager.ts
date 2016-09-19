@@ -147,7 +147,7 @@ export namespace RETAILBOT {
                                     .tap(builder.CardAction.showImage(session, "http://www.acer.com/ac/en/US/content/series/swift3"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "http://www.acer.com/ac/en/US/content/series/swift3", "Buy online"),
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "Acer Swift 3", "Real store")
                             ]),
                         new builder.HeroCard(session)
@@ -158,7 +158,7 @@ export namespace RETAILBOT {
                                     .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/", "Buy online"),
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
                             ]),
                         new builder.HeroCard(session)
@@ -169,7 +169,7 @@ export namespace RETAILBOT {
                                     .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/", "Buy online"),
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
                             ]),
                         new builder.HeroCard(session)
@@ -180,7 +180,7 @@ export namespace RETAILBOT {
                                     .tap(builder.CardAction.showImage(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665", "Buy online"),
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
                             ]),
                         new builder.HeroCard(session)
