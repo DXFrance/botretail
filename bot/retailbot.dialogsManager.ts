@@ -194,17 +194,17 @@ export namespace RETAILBOT {
                                 builder.CardAction.openUrl(session, "http://mensgear.net/wp-content/uploads/2016/04/HP-Spectre-13-Laptop.jpg", "Buy online"),
                                 builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
                             ]),
-                        new builder.HeroCard(session)
-                            .title("Surface Pro 4")
-                            .text("<b>Surface Pro 4</b> The tablet that replace your laptop.")
-                            .images([
-                                builder.CardImage.create(session, "https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Pro4-CoreM-SU3-00001/en-INTL-L-Surface-Pro4-CoreM-SU3-00001-RM1-mnco.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500"))
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500", "Buy online"),
-                                builder.CardAction.imBack(session, "Surface Pro 4", "Real store")
-                            ]),
+                        // new builder.HeroCard(session)
+                        //     .title("Surface Pro 4")
+                        //     .text("<b>Surface Pro 4</b> The tablet that replace your laptop.")
+                        //     .images([
+                        //         builder.CardImage.create(session, "https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Pro4-CoreM-SU3-00001/en-INTL-L-Surface-Pro4-CoreM-SU3-00001-RM1-mnco.jpg")
+                        //             .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500"))
+                        //     ])
+                        //     .buttons([
+                        //         builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msusa/en_US/pdp/Surface-Pro-4/productID.325711500", "Buy online"),
+                        //         builder.CardAction.imBack(session, "Surface Pro 4", "Real store")
+                        //     ]),
                         new builder.HeroCard(session)
                             .title("I don't know !")
                             .text("Help me to choose.")
