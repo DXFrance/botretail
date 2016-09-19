@@ -216,7 +216,7 @@ export namespace RETAILBOT {
                                 builder.CardAction.imBack(session, "I don't know", "I don't know")
                             ])
                     ]);
-                    builder.Prompts.choice(session, msg, "HP Spectre|Surface Pro 4|XPS 13|I don't know");
+                    builder.Prompts.choice(session, msg, "Acer Swift 3|ASUS UX 360|SAMSUNG TAB PRO S|LENOVO YOGA 900|I don't know");
                 },
                 (session: any, results: any) => {
                     var item = results.response.entity;
