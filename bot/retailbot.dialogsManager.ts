@@ -144,7 +144,7 @@ export namespace RETAILBOT {
                             .text("Ultra-Thin & Light")
                             .images([
                                 builder.CardImage.create(session, "http://static.acer.com/up/Resource/Acer/Notebooks/Swift%203/Photogallery/20160823/Swift-3_Fingerprint_gold_gallery_04.png")
-                                    .tap(builder.CardAction.showImage(session, "http://www.acer.com/ac/en/US/content/series/swift3")),
+                                    .tap(builder.CardAction.showImage(session, "http://www.acer.com/ac/en/US/content/series/swift3"))
                             ])
                             .buttons([
                                 builder.CardAction.openUrl(session, "http://www.acer.com/ac/en/US/content/series/swift3", "Buy online"),
@@ -155,7 +155,7 @@ export namespace RETAILBOT {
                             .text("360° of Freedom. 100% ZenBook.")
                             .images([
                                 builder.CardImage.create(session, "http://www.ultrabookreview.com/wp-content/uploads/2016/06/asus-zenbook-ux360-3.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/")),
+                                    .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/"))
                             ])
                             .buttons([
                                 builder.CardAction.openUrl(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/", "Buy online"),
