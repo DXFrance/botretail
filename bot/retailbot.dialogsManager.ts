@@ -162,16 +162,27 @@ export namespace RETAILBOT {
                                 builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
                             ]),
                         new builder.HeroCard(session)
-                            .title("SAMSUNG TAB PRO S")
-                            .text("Work and Fun.")
+                            .title("ASUS UX 360")
+                            .text("360° of Freedom. 100% ZenBook.")
                             .images([
-                                builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
-                                    .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
+                                builder.CardImage.create(session, "http://www.ultrabookreview.com/wp-content/uploads/2016/06/asus-zenbook-ux360-3.jpg")
+                                    .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/"))
                             ])
                             .buttons([
                                 builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
-                                builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
+                                builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
                             ]),
+                        // new builder.HeroCard(session)
+                        //     .title("SAMSUNG TAB PRO S")
+                        //     .text("Work and Fun.")
+                        //     .images([
+                        //         builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
+                        //             .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
+                        //     ])
+                        //     .buttons([
+                        //         builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                        //         builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
+                        //     ]),
                         new builder.HeroCard(session)
                             .title("LENOVO YOGA 900")
                             .text("The Yoga 900 is unbelievably thin and elegant.")
