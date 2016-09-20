@@ -161,28 +161,28 @@ export namespace RETAILBOT {
                                 builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
                             ]),
-                        new builder.HeroCard(session)
-                            .title("LENOVO YOGA 900")
-                            .text("The Yoga 900 is unbelievably thin and elegant.")
-                            .images([
-                                builder.CardImage.create(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665")
-                                    .tap(builder.CardAction.showImage(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665"))
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
-                                builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
-                            ]),
-                        new builder.HeroCard(session)
-                            .title("SAMSUNG TAB PRO S")
-                            .text("Work and Fun.")
-                            .images([
-                                builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
-                                    .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
-                                builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
-                            ]),
+                        // new builder.HeroCard(session)
+                        //     .title("LENOVO YOGA 900")
+                        //     .text("The Yoga 900 is unbelievably thin and elegant.")
+                        //     .images([
+                        //         builder.CardImage.create(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665")
+                        //             .tap(builder.CardAction.showImage(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665"))
+                        //     ])
+                        //     .buttons([
+                        //         builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                        //         builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
+                        //     ]),
+                        // new builder.HeroCard(session)
+                        //     .title("SAMSUNG TAB PRO S")
+                        //     .text("Work and Fun.")
+                        //     .images([
+                        //         builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
+                        //             .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
+                        //     ])
+                        //     .buttons([
+                        //         builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                        //         builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
+                        //     ]),
                         new builder.HeroCard(session)
                             .title("I don't know !")
                             .text("Help me to choose.")
