@@ -259,13 +259,13 @@ export namespace RETAILBOT {
                             .attachments([
                                 new builder.HeroCard(session)
                                     .title(this._store[1].name)
-                                    .text(this._store[1].address + "")
+                                    .text("12 Rue Halévy, 75009 Paris")
                                     .images([
                                         builder.CardImage.create(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")
                                             .tap(builder.CardAction.showImage(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")),
                                     ])
                                     .buttons([
-                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + "39%20quai%20du%20president%20roosevelt%2092130%20issy%20les%20moulineaux" + "~adr." + "21%20Rue%20Pasteur%20%20Le%20Kremlin-Bicêtre%20%20IdF%2094270%20France" + "&rtop=0~1~0", "Bing Direction"),
+                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + "39%20quai%20du%20president%20roosevelt%2092130%20issy%20les%20moulineaux" + "~adr." + "12 Rue Halévy, 75009 Paris" + "&rtop=0~1~0", "Bing Direction"),
                                         builder.CardAction.imBack(session, "Let's go !", "Go")
                                     ])
                             ]);
