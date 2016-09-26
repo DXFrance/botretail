@@ -183,6 +183,17 @@ export namespace RETAILBOT {
                                 builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
                                 builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
                             ]),
+                         new builder.HeroCard(session)
+                            .title("HP Spectre X360")
+                            .text("360 degrees of versatility. Zero compromises.")
+                            .images([
+                                builder.CardImage.create(session, "http://images.techhive.com/images/article/2015/10/hp-spectre_x360_media-mode_right-facing-100620373-large.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://store.hp.com/us/en/mdp/Laptops/spectre-x360-211501--1"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "HP Spectre X360", "Real store")
+                            ]),
                         new builder.HeroCard(session)
                             .title("I don't know !")
                             .text("Help me to choose.")
@@ -194,7 +205,7 @@ export namespace RETAILBOT {
                                 builder.CardAction.imBack(session, "I don't know", "I don't know")
                             ])
                     ]);
-                    builder.Prompts.choice(session, msg, "Acer Swift 3|ASUS UX 360|SAMSUNG TAB PRO S|LENOVO YOGA 900|I don't know");
+                    builder.Prompts.choice(session, msg, "Acer Swift 3|ASUS UX 360|SAMSUNG TAB PRO S|LENOVO YOGA 900|HP Spectre X360|I don't know");
                 },
                 (session: any, results: any) => {
                     var item = results.response.entity;
