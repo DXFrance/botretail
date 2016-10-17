@@ -38,8 +38,6 @@ export namespace RETAILBOT {
             }
         }
 
-
-
         protected set_dialogs(bot: any) :void {
             for (var c of this._criteria) {
                 var that = this;
@@ -73,6 +71,18 @@ export namespace RETAILBOT {
 
         public init(bot: any) {
             bot.dialog('/', this._dialog);
+
+             bot.use({
+                botbuilder: function (session: any, next:any) {
+                    console.log('Message Received: ', session.message.text);
+                    if(session.message.text === "--reset"){
+                        session.endConversation();
+                    }
+                    else {
+                        next();
+                    }
+                }
+            });
 
             this._dialog.onDefault(builder.DialogAction.send("I'm sorry I didn't understand."));
 
@@ -130,82 +140,144 @@ export namespace RETAILBOT {
                     .attachmentLayout(builder.AttachmentLayout.carousel)
                     .attachments([
                         new builder.HeroCard(session)
-                            .title("HP Spectre")
-                            .text("The <b>Spectre</b> from HP is the thinest laptop in the world")
+                            .title("Acer Swift 3")
+                            .text("Ultra-Thin & Light")
                             .images([
-                                builder.CardImage.create(session, "http://h71076.www7.hp.com/EMEA/spectre/gallary2.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.bing.com/search?q=hp+spectre")),
+                                builder.CardImage.create(session, "http://static.acer.com/up/Resource/Acer/Notebooks/Swift%203/Photogallery/20160823/Swift-3_Fingerprint_gold_gallery_04.png")
+                                    .tap(builder.CardAction.showImage(session, "http://www.acer.com/ac/en/US/content/series/swift3"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "https://www.bing.com/search?q=hp+spectre", "Buy online"),
-                                builder.CardAction.imBack(session, "HP Spectre", "Real store")
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "Acer Swift 3", "Real store")
                             ]),
                         new builder.HeroCard(session)
-                            .title("Surface Pro 4")
-                            .text("<b>Surface Pro 4</b> The tablet that replace your laptop.")
+                            .title("ASUS UX 360")
+                            .text("360° of Freedom. 100% ZenBook.")
                             .images([
-                                builder.CardImage.create(session, "https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Pro4-CoreM-SU3-00001/en-INTL-L-Surface-Pro4-CoreM-SU3-00001-RM1-mnco.jpg")
-                                    .tap(builder.CardAction.showImage(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700")),
+                                builder.CardImage.create(session, "http://www.ultrabookreview.com/wp-content/uploads/2016/06/asus-zenbook-ux360-3.jpg")
+                                    .tap(builder.CardAction.showImage(session, "https://www.asus.com/us/Notebooks/ASUS-ZenBook-Flip-UX360CA/"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "https://www.microsoftstore.com/store/msfr/fr_FR/pdp/Surface-Pro-4/productID.326546700", "Buy online"),
-                                builder.CardAction.imBack(session, "Surface Pro 4", "Real store")
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "ASUS UX 360", "Real store")
                             ]),
                         new builder.HeroCard(session)
-                            .title("XPS 13")
-                            .text("<b>XPS 13</b> from dell. STUNNING. POWERFUL. UNPARALLELED.")
+                            .title("LENOVO YOGA 900")
+                            .text("The Yoga 900 is unbelievably thin and elegant.")
                             .images([
-                                builder.CardImage.create(session, "http://xpsbydell.com/wp-content/themes/xps_microsite_7-2016/images/tour/laptop.png?ver=0824162210")
+                                builder.CardImage.create(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665")
+                                    .tap(builder.CardAction.showImage(session, "http://winsupersite.com/site-files/winsupersite.com/files/gallery_images/02_Hero_Shot_VIDEO_Gold.jpg?1445276665"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "LENOVO YOGA 900", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("SAMSUNG TAB PRO S")
+                            .text("Work and Fun.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/assets/images/configurator/desktop/tabpro-s_black.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://www.samsung.com/us/explore/tab-pro-s-features-and-specs/"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "SAMSUNG TAB PRO S", "Real store")
+                            ]),
+                         new builder.HeroCard(session)
+                            .title("HP Spectre X360")
+                            .text("360 degrees of versatility. Zero compromises.")
+                            .images([
+                                builder.CardImage.create(session, "http://images.techhive.com/images/article/2015/10/hp-spectre_x360_media-mode_right-facing-100620373-large.jpg")
+                                    .tap(builder.CardAction.showImage(session, "http://store.hp.com/us/en/mdp/Laptops/spectre-x360-211501--1"))
+                            ])
+                            .buttons([
+                                builder.CardAction.openUrl(session, "https://www.bing.com/", "Buy online"),
+                                builder.CardAction.imBack(session, "HP Spectre X360", "Real store")
+                            ]),
+                        new builder.HeroCard(session)
+                            .title("I don't know !")
+                            .text("Help me to choose.")
+                            .images([
+                                builder.CardImage.create(session, "http://www.silicon.fr/wp-content/uploads/2016/06/Windows-10-684x513.jpg")
                                     .tap(builder.CardAction.showImage(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn"))
                             ])
                             .buttons([
-                                builder.CardAction.openUrl(session, "http://xpsbydell.com/?dgc=IR&cid=XPSfamily-263489&lid=2-1&ref=bnn", "Buy online"),
-                                builder.CardAction.imBack(session, "XPS 13", "Real store")
+                                builder.CardAction.imBack(session, "I don't know", "I don't know")
                             ])
                     ]);
-                    builder.Prompts.choice(session, msg, "HP Spectre|Surface Pro 4|XPS 13");
+                    builder.Prompts.choice(session, msg, "Acer Swift 3|ASUS UX 360|SAMSUNG TAB PRO S|LENOVO YOGA 900|HP Spectre X360|I don't know");
                 },
                 (session: any, results: any) => {
                     var item = results.response.entity;
-                    builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
+                    if(item === "I don't know"){
+                        session.send('You can meet someone at a physical store to help you. ');
+                        builder.Prompts['text'](session, 'Can you give me your physical address to I can select the nearest store for you ?', null );
+                    }
+                    else {
+                        builder.Prompts['text'](session, item + ' is avaiable in ' + this._stores.length + ' stores, we will need your address to propose you the nearest store to you.', null );
+                    }
                 },
                 (session: any, results: any) => {
-                  session.send('We are looking for the nearest store to ' + results.response + ', please wait a few seconds');
-                  var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine='+results.response);
-                  var bing = JSON.parse(res.getBody('utf8'));
-                  if (bing.resourceSets[0].estimatedTotal) {
-                    let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
-                    let lng = bing.resourceSets[0].resources[0].point.coordinates[1];
-                    this._store = [Number.MAX_SAFE_INTEGER, null];
-                    for (let i = 0, len = this._stores.length; i < len; i++) {
-                      let distance = this._geolocalisation.getDistanceFromLatLonInKm(lat, lng, this._stores[i].localisation.lat, this._stores[i].localisation.lng)
-                      if (distance < this._store[0]) {
-                        this._store[0] = distance;
-                        this._store[1] = this._stores[i];
-                      }
-                    }
-
+                    session.send('I am looking for the nearest store to ' + results.response + ', please wait a few seconds');
+                    session.send('Oh and based on what you need I can also recommand that you get a Office 365 subscription, are you interested in this?');
                     var msg = new builder.Message(session)
-                    .textFormat(builder.TextFormat.xml)
-                    .attachmentLayout(builder.AttachmentLayout.carousel)
-                    .attachments([
-                        new builder.HeroCard(session)
-                            .title(this._store[1].name)
-                            .text("<ul><li>" + this._store[1].phone + "</li><li>" + this._store[1].address + "</li><li>" + this._store[1].schedule + "</li></ul>")
-                            .images([
-                                builder.CardImage.create(session, this._store[1].photo)
-                                    .tap(builder.CardAction.showImage(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0")),
-                            ])
-                            .buttons([
-                                builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + this._store[1].address + "~adr." + results.response + "&rtop=0~1~0", "Bing Direction"),
-                            ])
-                    ]);
-                    builder.Prompts.choice(session, msg);
+                            .textFormat(builder.TextFormat.xml)
+                            .attachmentLayout(builder.AttachmentLayout.carousel)
+                            .attachments([
+                                new builder.HeroCard(session)
+                                    .title("Special Offer")
+                                    .text("Add an Office 365 subscription?")
+                                    .images([])
+                                    .buttons([
+                                        builder.CardAction.imBack(session, "Yes", "Yes"),
+                                        builder.CardAction.imBack(session, "No", "No")
+                                    ])
+                            ]);
+                        builder.Prompts.choice(session, msg, "Yes|No");
+                },
+                (session: any, results: any) => {
+                    session.send('Ok!');
+                    session.send('Here is the nearest store I have found. A seller will be able to answer your questions. :)');
+                    var address = "3 bis, rue rottembourg 75012 PARIS" //results.response;
+                    var res = request('GET', 'http://dev.virtualearth.net/REST/v1/Locations?countryRegion=FR&key=AsiCMSmOq6O3MzsI4F7HqUXmB2JY7E76gdaCgtlranURBYOHgbariAXQxJURoTE8&addressLine=' + address);
+                    var bing = JSON.parse(res.getBody('utf8'));
+                    if (bing.resourceSets[0].estimatedTotal) {
+                        let lat = bing.resourceSets[0].resources[0].point.coordinates[0];
+                        let lng = bing.resourceSets[0].resources[0].point.coordinates[1];
+                        this._store = [Number.MAX_SAFE_INTEGER, null];
+                        for (let i = 0, len = this._stores.length; i < len; i++) {
+                            let distance = this._geolocalisation.getDistanceFromLatLonInKm(lat, lng, this._stores[i].localisation.lat, this._stores[i].localisation.lng)
+                            if (distance < this._store[0]) {
+                                this._store[0] = distance;
+                                this._store[1] = this._stores[i];
+                            }
+                        }
 
-                  } else {
-                    session.send('We cannot find a store near you, try with a different address');
-                  }
-                }
+                        var msg = new builder.Message(session)
+                            .textFormat(builder.TextFormat.xml)
+                            .attachmentLayout(builder.AttachmentLayout.carousel)
+                            .attachments([
+                                new builder.HeroCard(session)
+                                    .title(this._store[1].name)
+                                    .text("12 Rue Halévy, 75009 Paris")
+                                    .images([
+                                        builder.CardImage.create(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")
+                                            .tap(builder.CardAction.showImage(session, "http://www.timstanleyphoto.com/HDR/2012/i-GrS2b37/0/L/MicrosoftStore-L.jpg")),
+                                    ])
+                                    .buttons([
+                                        builder.CardAction.openUrl(session, "http://bing.com/maps/default.aspx?rtp=adr." + "39%20quai%20du%20president%20roosevelt%2092130%20issy%20les%20moulineaux" + "~adr." + "12 Rue Halévy, 75009 Paris" + "&rtop=0~1~0", "Bing Direction"),
+                                        builder.CardAction.imBack(session, "Let's go !", "Go")
+                                    ])
+                            ]);
+                        builder.Prompts.choice(session, msg, "Let's go !");
+
+                    } else {
+                        session.send('I cannot find a store near you, try with a different address');
+                    }
+                },
+                (session: any, results: any) => {
+                    session.endDialog();
+                },
             ]);
         }
     }
